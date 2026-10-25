@@ -200,7 +200,7 @@ export function handleWithdrawal(event: Withdrawal): void {
 
     localRound.totalFeeDispersed = localRound.totalFeeDispersed.plus(event.params._amount);
 
-    if (localRound.totalFeeDispersed.equals(localRound.feeRewards)) {
+    if (localRound.totalFeeDispersed.ge(localRound.feeRewards)) {
       localRound.appealFeesDispersed = true;
     }
 

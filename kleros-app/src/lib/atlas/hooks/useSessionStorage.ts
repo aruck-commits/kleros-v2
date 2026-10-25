@@ -2,6 +2,8 @@ import { useState } from "react";
 
 export function useSessionStorage<T>(keyName: string, defaultValue: T) {
   const [storedValue, setStoredValue] = useState<T>(() => {
+    if (typeof window === "undefined") return defaultValue;
+
     try {
       const value = window.sessionStorage.getItem(keyName);
 
@@ -16,7 +18,9 @@ export function useSessionStorage<T>(keyName: string, defaultValue: T) {
 
   const setValue = (newValue: T) => {
     try {
-      window.sessionStorage.setItem(keyName, JSON.stringify(newValue));
+      if (typeof window !== "undefined") {
+        window.sessionStorage.setItem(keyName, JSON.stringify(newValue));
+      }
     } finally {
       setStoredValue(newValue);
     }

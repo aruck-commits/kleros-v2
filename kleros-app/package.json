@@ -7,8 +7,17 @@
   "author": "Kleros",
   "license": "MIT",
   "source": "src/lib/index.ts",
+  "main": "./dist/kleros-app.js",
   "types": "./dist/kleros-app.d.ts",
   "module": "./dist/kleros-app.js",
+  "exports": {
+    ".": {
+      "types": "./dist/kleros-app.d.ts",
+      "import": "./dist/kleros-app.js",
+      "default": "./dist/kleros-app.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
